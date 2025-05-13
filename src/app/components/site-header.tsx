@@ -25,7 +25,7 @@ export function SiteHeader() {
 						Book Now
 					</Link>
 					<Link href="#contact" className="text-sm font-medium transition-colors hover:text-primary">
-						Contact
+						Contacts
 					</Link>
 				</nav>
 
