@@ -4,7 +4,7 @@ import { Scissors } from "lucide-react"
 
 export function HeroSection() {
   return (
-    <section className="relative w-full py-20 md:py-32 overflow-hidden bg-gradient-to-b from-slate-50 to-white">
+    <section className="relative w-full py-20 md:py-32 overflow-hidden bg-gradient-to-b from-slate-50 to-white container mx-auto">
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-[url('/placeholder.svg?height=1080&width=1920')] bg-cover bg-center opacity-10"></div>
       </div>

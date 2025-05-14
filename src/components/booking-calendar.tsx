@@ -48,7 +48,7 @@ export function BookingCalendar() {
 
 
   return (
-    <section id="booking" className="w-full py-20 bg-white">
+    <section id="booking" className="w-full py-20 bg-white mx-auto container">
       <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center text-center space-y-4 mb-12">
           <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">Book Your Appointment</h2>

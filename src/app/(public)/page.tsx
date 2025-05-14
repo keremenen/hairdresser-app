@@ -1,10 +1,12 @@
 import { HeroSection } from "@/components/hero-section";
 import { BookingCalendar } from "@/components/booking-calendar";
+import { Services } from "@/components/services";
 export default function Home() {
 	return (
-		<main className="container mx-auto">
+		<main>
 			<HeroSection />
 			<BookingCalendar />
+			<Services />
 		</main>
 	);
 }
