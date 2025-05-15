@@ -1,8 +1,10 @@
-import { DashboardOverview } from "@/components/admin/dashboard-overview";
+import DashboardHeader from "@/components/admin/dashboard-header";
+import DashboardOverview from "@/components/admin/dashboard-overview";
 
 export default function DashboardPage() {
   return (
-    <main className="p-4">
+    <main className="p-4 space-y-6">
+      <DashboardHeader />
       <DashboardOverview />
     </main>
   )
