@@ -3,7 +3,7 @@ import { Calendar, Clock, Users } from "lucide-react"
 
 export default function DashboardOverview() {
   return (
-    <section className="grid gap-4 grid-cols-1 md:grid-cols-3">
+    <section className="grid gap-6 grid-cols-1 md:grid-cols-3">
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 ">
           <CardTitle className="text-sm font-medium">Total Appointments</CardTitle>

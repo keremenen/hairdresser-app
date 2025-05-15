@@ -4,6 +4,7 @@ import { Calendar, Clock } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
+import { cn } from "@/lib/utils";
 
 const exampleAppointments: AppointmentType[] = [
   {
@@ -90,9 +91,13 @@ const exampleAppointments: AppointmentType[] = [
   },
 ]
 
-export default function UpcomingAppointments() {
+type UpcomingAppointmentsProps = {
+  className?: string
+}
+
+export default function UpcomingAppointments({ className }: UpcomingAppointmentsProps) {
   return (
-    <Card>
+    <Card className={cn(className)}>
       <CardHeader>
         <CardTitle>Upcoming Appointments</CardTitle>
         <CardDescription>The next 5 scheduled appointments</CardDescription>
