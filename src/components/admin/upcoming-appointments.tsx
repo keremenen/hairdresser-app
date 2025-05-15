@@ -1,5 +1,9 @@
 import { AppointmentType } from "@/data/appointments-data";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
+import { Calendar, Clock } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { Button } from "../ui/button";
+import { Badge } from "../ui/badge";
 
 const exampleAppointments: AppointmentType[] = [
   {
@@ -33,7 +37,7 @@ const exampleAppointments: AppointmentType[] = [
       id: "1",
       name: "Emma Johnson",
     },
-    status: "confirmed",
+    status: "pending",
   },
   {
     id: "appt-3",
@@ -66,7 +70,7 @@ const exampleAppointments: AppointmentType[] = [
       id: "1",
       name: "Emma Johnson",
     },
-    status: "confirmed",
+    status: "pending",
   },
   {
     id: "appt-5",
@@ -82,13 +86,13 @@ const exampleAppointments: AppointmentType[] = [
       id: "1",
       name: "Emma Johnson",
     },
-    status: "confirmed",
+    status: "cancelled",
   },
 ]
 
 export default function UpcomingAppointments() {
   return (
-    <Card className="col-span-4">
+    <Card>
       <CardHeader>
         <CardTitle>Upcoming Appointments</CardTitle>
         <CardDescription>The next 5 scheduled appointments</CardDescription>
@@ -96,7 +100,7 @@ export default function UpcomingAppointments() {
       <CardContent>
         {
           exampleAppointments.map((appointment) => (
-            <div key={appointment.id} className="flex items-center justify-between border-b pb-4 last:border-0">
+            <div key={appointment.id} className="flex items-center justify-between border-b last:border-0 py-3 first:pt-0">
               <div className="flex items-center space-x-4">
                 <Avatar>
                   <AvatarImage src={`/placeholder.svg?text=${appointment.client.name.charAt(0)}`} />
@@ -106,9 +110,9 @@ export default function UpcomingAppointments() {
                   <p className="font-medium">{appointment.client.name}</p>
                   <div className="flex items-center text-sm text-muted-foreground">
                     <Calendar className="mr-1 h-3 w-3" />
-                    <span>{formatDate(appointment.date)}</span>
+                    <span>Sun, May 18, 2025</span>
                     <Clock className="ml-2 mr-1 h-3 w-3" />
-                    <span>{formatTime(appointment.time)}</span>
+                    <span>11:30</span>
                   </div>
                   <p className="text-sm">{appointment.service}</p>
                 </div>
@@ -130,8 +134,7 @@ export default function UpcomingAppointments() {
                 </Button>
               </div>
             </div>
-          )}
-        }
+          ))}
       </CardContent>
     </Card>
   )
