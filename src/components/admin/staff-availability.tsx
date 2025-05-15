@@ -1,8 +1,13 @@
+import { cn } from "@/lib/utils";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 
-export default function StallAvailability() {
+type StallAvailabilityProps = {
+  className?: string
+}
+
+export default function StallAvailability({ className }: StallAvailabilityProps) {
   return (
-    <Card>
+    <Card className={cn(className)}>
       <CardHeader>
         <CardTitle>Staff Availability</CardTitle>
         <CardDescription>Today's schedule for each stylist</CardDescription>

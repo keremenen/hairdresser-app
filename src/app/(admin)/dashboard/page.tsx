@@ -9,8 +9,8 @@ export default function DashboardPage() {
       <DashboardHeader />
       <DashboardOverview />
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4">
-        <UpcomingAppointments className="md:col-span-2" />
-        <StallAvailability />
+        <UpcomingAppointments className="md:col-span-2 " />
+        <StallAvailability className="h-fit" />
       </div>
     </main>
   )
