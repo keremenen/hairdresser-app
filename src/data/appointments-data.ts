@@ -1,4 +1,4 @@
-export interface AppointmentType {
+export type AppointmentType = {
   id: string
   client: {
     name: string
