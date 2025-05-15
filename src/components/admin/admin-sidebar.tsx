@@ -43,6 +43,7 @@ const SidebarMenuItems = [
 ];
 
 export function AdminSidebar() {
+  const { state } = useSidebar()
   const pathname = usePathname();
   const { isMobile } = useSidebar();
 
@@ -53,11 +54,17 @@ export function AdminSidebar() {
       className="border-r"
     >
       <SidebarHeader className="py-2 pb-4">
-        <div className="flex items-center flex-col">
-          <span className="text-lg font-semibold">Hairdresser App</span>
-          <span className="text-muted-foreground text-xs">
-            Admin Dashboard
-          </span>
+        <div className="flex items-center flex-col justify-between">
+          {
+            state === "collapsed" ? (<p>HA</p>) : (
+              <>
+                <span className="text-lg font-semibold">Hairdresser App</span>
+                <span className="text-muted-foreground text-xs">
+                  Admin Dashboard
+                </span>
+              </>
+            )
+          }
         </div>
       </SidebarHeader>
       <SidebarSeparator className="m-0" />
