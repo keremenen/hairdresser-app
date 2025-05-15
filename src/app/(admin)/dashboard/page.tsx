@@ -1,7 +1,7 @@
 
 export default function DashboardPage() {
   return (
-    <main>
+    <main className="p-4">
       hello
     </main>
   )

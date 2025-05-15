@@ -1,4 +1,5 @@
 'use client'
+import AdminHeader from '@/components/admin/admin-header'
 import { AdminSidebar } from '@/components/admin/admin-sidebar'
 import { SidebarHeader, SidebarProvider } from '@/components/ui/sidebar'
 
@@ -13,8 +14,10 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
       <SidebarProvider defaultOpen >
         <div className="flex min-h-screen w-full">
           <AdminSidebar />
-          {children}
-
+          <div className="flex flex-col w-full">
+            <AdminHeader />
+            {children}
+          </div>
         </div>
       </SidebarProvider>
     </>
