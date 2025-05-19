@@ -26,18 +26,22 @@ import {
 const SidebarMenuItems = [
   {
     name: "Dashboard",
+    href: "/dashboard",
     icon: <LayoutDashboard className="h-4 w-4" />,
   },
   {
     name: "Appointments",
+    href: "/dashboard/appointments",
     icon: <CalendarCheck className="h-4 w-4" />,
   },
   {
     name: "Staff",
+    href: "/dashboard/staff",
     icon: <Users className="h-4 w-4" />,
   },
   {
     name: "Settings",
+    href: "/settings",
     icon: <Settings className="h-4 w-4" />,
   },
 ];
@@ -78,11 +82,11 @@ export function AdminSidebar() {
                   <SidebarMenuButton
                     asChild
                     isActive={pathname.startsWith(
-                      `/admin/${item.name.toLowerCase()}`,
+                      `/${item.name.toLowerCase()}`,
                     )}
                     tooltip={item.name}
                   >
-                    <Link href={`/admin/${item.name.toLowerCase()}`}>
+                    <Link href={item.href}>
                       {item.icon}
                       <span>{item.name}</span>
                     </Link>
