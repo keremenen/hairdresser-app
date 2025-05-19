@@ -6,6 +6,7 @@ import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Calendar, Clock, Plus, X } from "lucide-react"
+import { StaffSchedule } from "./staff-schedule"
 // import { StaffSchedule } from "@/components/admin/staff-schedule"
 
 export function StaffManagement() {
@@ -89,73 +90,93 @@ export function StaffManagement() {
             </Button>
           </CardHeader>
           <CardContent>
-            {/* <StaffSchedule staffId={selectedStaffId} /> */}
+            <StaffSchedule staffId={selectedStaffId} />
           </CardContent>
         </Card>
       )}
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        {staff.map((member) => (
-          <Card key={member.id}>
-            <CardHeader className="pb-2">
-              <div className="flex items-center justify-between">
-                <Badge variant={member.status === "active" ? "default" : "outline"}>
-                  {member.status === "active" ? "Active" : "Inactive"}
-                </Badge>
-                <Button variant="ghost" size="icon" className="h-8 w-8">
-                  <span className="sr-only">More options</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="h-4 w-4"
-                  >
-                    <circle cx="12" cy="12" r="1" />
-                    <circle cx="19" cy="12" r="1" />
-                    <circle cx="5" cy="12" r="1" />
-                  </svg>
-                </Button>
-              </div>
-            </CardHeader>
-            <CardContent className="pb-2">
-              <div className="flex items-center space-x-4">
-                <Avatar className="h-12 w-12">
-                  <AvatarImage src={`/placeholder.svg?text=${member.name.charAt(0)}`} />
-                  <AvatarFallback>{member.name.charAt(0)}</AvatarFallback>
-                </Avatar>
-                <div>
-                  <p className="font-medium">{member.name}</p>
-                  <p className="text-sm text-muted-foreground">{member.role}</p>
-                </div>
-              </div>
-              <div className="mt-4 space-y-2">
-                <div className="flex items-center text-sm">
-                  <Calendar className="mr-2 h-4 w-4 text-muted-foreground" />
-                  <span>{member.schedule}</span>
-                </div>
-                <div className="flex items-center text-sm">
-                  <Clock className="mr-2 h-4 w-4 text-muted-foreground" />
-                  <span>{member.appointmentsToday} appointments today</span>
-                </div>
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button
-                variant={selectedStaffId === member.id ? "default" : "outline"}
-                size="sm"
-                className="w-full"
-                onClick={() => handleViewSchedule(member.id)}
-              >
-                {selectedStaffId === member.id ? "Hide Schedule" : "View Schedule"}
-              </Button>
-            </CardFooter>
-          </Card>
-        ))}
-      </div>
+      <StaffList
+        staff={staff}
+        selectedStaffId={selectedStaffId}
+        handleViewSchedule={handleViewSchedule}
+      />
     </div>
+  )
+}
+
+type StaffListProps = {
+  staff: any[],
+  selectedStaffId: string | null,
+  handleViewSchedule: (staffId: string) => void,
+}
+
+function StaffList({
+  staff,
+  selectedStaffId,
+  handleViewSchedule,
+}: StaffListProps) {
+  return (
+    <section className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      {staff.map((member) => (
+        <Card key={member.id}>
+          <CardHeader className="pb-2">
+            <div className="flex items-center justify-between">
+              <Badge variant={member.status === "active" ? "default" : "outline"}>
+                {member.status === "active" ? "Active" : "Inactive"}
+              </Badge>
+              <Button variant="ghost" size="icon" className="h-8 w-8">
+                <span className="sr-only">More options</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-4 w-4"
+                >
+                  <circle cx="12" cy="12" r="1" />
+                  <circle cx="19" cy="12" r="1" />
+                  <circle cx="5" cy="12" r="1" />
+                </svg>
+              </Button>
+            </div>
+          </CardHeader>
+          <CardContent className="pb-2">
+            <div className="flex items-center space-x-4">
+              <Avatar className="h-12 w-12">
+                <AvatarImage src={`/placeholder.svg?text=${member.name.charAt(0)}`} />
+                <AvatarFallback>{member.name.charAt(0)}</AvatarFallback>
+              </Avatar>
+              <div>
+                <p className="font-medium">{member.name}</p>
+                <p className="text-sm text-muted-foreground">{member.role}</p>
+              </div>
+            </div>
+            <div className="mt-4 space-y-2">
+              <div className="flex items-center text-sm">
+                <Calendar className="mr-2 h-4 w-4 text-muted-foreground" />
+                <span>{member.schedule}</span>
+              </div>
+              <div className="flex items-center text-sm">
+                <Clock className="mr-2 h-4 w-4 text-muted-foreground" />
+                <span>{member.appointmentsToday} appointments today</span>
+              </div>
+            </div>
+          </CardContent>
+          <CardFooter>
+            <Button
+              variant={selectedStaffId === member.id ? "default" : "outline"}
+              size="sm"
+              className="w-full"
+              onClick={() => handleViewSchedule(member.id)}
+            >
+              {selectedStaffId === member.id ? "Hide Schedule" : "View Schedule"}
+            </Button>
+          </CardFooter>
+        </Card>
+      ))}
+    </section>
   )
 }
