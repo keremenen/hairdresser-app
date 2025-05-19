@@ -26,24 +26,24 @@ import {
 const SidebarMenuItems = [
   {
     name: "Dashboard",
-    href: "/dashboard",
+    href: "/admin",
     icon: <LayoutDashboard className="h-4 w-4" />,
   },
   {
     name: "Appointments",
-    href: "/dashboard/appointments",
+    href: "/admin/appointments",
     icon: <CalendarCheck className="h-4 w-4" />,
   },
   {
     name: "Staff",
-    href: "/dashboard/staff",
+    href: "/admin/staff",
     icon: <Users className="h-4 w-4" />,
   },
-  {
-    name: "Settings",
-    href: "/settings",
-    icon: <Settings className="h-4 w-4" />,
-  },
+  // {
+  //   name: "Settings",
+  //   href: "/settings",
+  //   icon: <Settings className="h-4 w-4" />,
+  // },
 ];
 
 export function AdminSidebar() {
