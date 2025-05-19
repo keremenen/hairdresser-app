@@ -81,7 +81,7 @@ export function AdminSidebar() {
                 <SidebarMenuItem key={item.name}>
                   <SidebarMenuButton
                     asChild
-                    isActive={pathname.startsWith(
+                    isActive={pathname.endsWith(
                       `/${item.name.toLowerCase()}`,
                     )}
                     tooltip={item.name}
