@@ -1,9 +1,5 @@
 "use client"
-
-import type React from "react"
-
 import { useState } from "react"
-import { Calendar } from "@/components/ui/calendar"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
@@ -70,18 +66,7 @@ export function BookingCalendar() {
                 <div className="space-y-2">
                   <Label htmlFor="date">Select Date</Label>
                   <div className="border rounded-md p-2">
-                    <Calendar
-                      mode="single"
-                      selected={date}
-                      onSelect={setDate}
-                      disabled={(date) => {
-                        // Disable past dates and Sundays
-                        const today = new Date()
-                        today.setHours(0, 0, 0, 0)
-                        return date < today || date.getDay() === 0
-                      }}
-                      className="rounded-md border-none"
-                    />
+                    calendar
                   </div>
                 </div>
 
