@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { Clock, Plus, X } from "lucide-react"
 import { StaffSchedule } from "./staff-schedule"
 import { StaffMemberEssentials } from "@/lib/types"
+import { StaffButton } from "./staff-button"
 
 
 type StaffManagementProps = {
@@ -27,11 +28,9 @@ export function StaffManagement({ initialStaffData }: StaffManagementProps) {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold tracking-tight">Staff Management</h1>
-        <Button>
-          <Plus className="mr-2 h-4 w-4" />
-          Add Staff Member
-        </Button>
+        <StaffButton actionType="add">Add Staff Member</StaffButton>
       </div>
+
 
       {selectedStaffId && selectedStaff && (
         <Card className="mb-6">
