@@ -21,6 +21,7 @@ export function StaffContextProvider({ children, data }: StaffContextProviderPro
   const [staff, setStaff] = useState<StaffMember[]>(data)
 
   const handleAddStaff = async (staff: StaffMemberEssentials) => {
+    console.log('adding staff', staff)
     const error = await addStaff(staff)
 
     if (error) {

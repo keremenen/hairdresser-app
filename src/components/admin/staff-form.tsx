@@ -29,9 +29,9 @@ export function StaffForm({ actionType, onFormSubbmition }: StaffFormProps) {
     defaultValues: {
       name: actionType === "edit" ? 'edit mode' : "",
       role: actionType === "edit" ? 'edit mode' : "",
-      email: actionType === "edit" ? 'edit mode' : "",
-      imageUrl: actionType === "edit" ? 'edit mode' : "",
-      isActive: actionType === "edit" ? true : false,
+      email: actionType === "edit" ? 'edit mode' : "dawdwa@o2.pl",
+      imageUrl: actionType === "edit" ? 'edit mode' : "dawdwadwad",
+      isActive: actionType === "edit" ? true : true,
 
     },
   })
@@ -41,11 +41,13 @@ export function StaffForm({ actionType, onFormSubbmition }: StaffFormProps) {
   return (
     <form className="space-y-6" action={async () => {
       const result = await trigger()
-
+      console.log('result', result)
       if (!result) return
-      onFormSubbmition()
+
 
       const staffData = getValues()
+      console.log('staffData', staffData)
+      onFormSubbmition()
 
       if (actionType === "add") {
         await handleAddStaff(staffData)
