@@ -1,4 +1,3 @@
-'use client'
 import AdminHeader from '@/components/admin/admin-header'
 import { AdminSidebar } from '@/components/admin/admin-sidebar'
 import { SidebarProvider } from '@/components/ui/sidebar'

@@ -1,3 +1,4 @@
+'use client'
 import {
   CalendarCheck,
   LayoutDashboard,
@@ -19,7 +20,6 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarSeparator,
-  SidebarTrigger,
   useSidebar,
 } from "@/components/ui/sidebar";
 

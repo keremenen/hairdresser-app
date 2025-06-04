@@ -1,3 +1,4 @@
+'server-only'
 import { prisma } from "./prisma"
 
 
