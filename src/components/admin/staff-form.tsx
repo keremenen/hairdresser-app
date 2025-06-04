@@ -21,8 +21,8 @@ export function StaffForm({ actionType, onFormSubbmition }: StaffFormProps) {
 
   const {
     register,
+    handleSubmit,
     getValues,
-    trigger,
     formState: { isSubmitting, errors },
   } = useForm<TStaffForm>({
     resolver: zodResolver(staffFormSchema),
@@ -32,27 +32,20 @@ export function StaffForm({ actionType, onFormSubbmition }: StaffFormProps) {
       email: actionType === "edit" ? 'edit mode' : "dawdwa@o2.pl",
       imageUrl: actionType === "edit" ? 'edit mode' : "dawdwadwad",
       isActive: actionType === "edit" ? true : true,
-
     },
   })
 
+  const handleFormSubmit = async (data: TStaffForm) => {
+    console.log('staffData', data)
+    onFormSubbmition()
 
+    if (actionType === "add") {
+      handleAddStaff(data)
+    }
+  }
 
   return (
-    <form className="space-y-6" action={async () => {
-      const result = await trigger()
-      console.log('result', result)
-      if (!result) return
-
-
-      const staffData = getValues()
-      console.log('staffData', staffData)
-      onFormSubbmition()
-
-      if (actionType === "add") {
-        await handleAddStaff(staffData)
-      }
-    }}>
+    <form className="space-y-6" onSubmit={handleSubmit(handleFormSubmit)}>
       <div className="flex items-center space-x-4 mb-6">
         <Avatar className="h-20 w-20">
           {avatarPreview ? (
@@ -83,34 +76,49 @@ export function StaffForm({ actionType, onFormSubbmition }: StaffFormProps) {
         <div className="space-y-2">
           <Label htmlFor="name">Name</Label>
           <Input id="name" {...register("name")} />
-          {errors.name && <p className="text-red-500">{errors.name.message}</p>}
+          {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
         </div>
 
         <div className="space-y-2">
           <Label htmlFor="role">Role / Speciality</Label>
           <Input id="role" {...register("role")} />
-          {errors.role && <p className="text-red-500">{errors.role.message}</p>}
+          {errors.role && <p className="text-red-500 text-sm">{errors.role.message}</p>}
         </div>
       </div>
 
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label htmlFor="email">Email</Label>
-          <Input id="email" {...register("email")} />
-          {errors.email && <p className="text-red-500">{errors.email.message}</p>}
+          <Input id="email" type="email" {...register("email")} />
+          {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
         </div>
 
+        <div className="space-y-2">
+          <Label htmlFor="imageUrl">Image URL</Label>
+          <Input id="imageUrl" {...register("imageUrl")} />
+          {errors.imageUrl && <p className="text-red-500 text-sm">{errors.imageUrl.message}</p>}
+        </div>
       </div>
 
       <div className="space-y-2">
         <Label htmlFor="status">Status</Label>
-
-
+        <div className="flex items-center space-x-2">
+          <input
+            type="checkbox"
+            id="isActive"
+            {...register("isActive")}
+            className="h-4 w-4 rounded border-gray-300"
+          />
+          <Label htmlFor="isActive" className="text-sm font-normal">
+            Active
+          </Label>
+        </div>
+        {errors.isActive && <p className="text-red-500 text-sm">{errors.isActive.message}</p>}
       </div>
 
-      <Button type="submit">Add Staff Member</Button>
-
+      <Button type="submit" disabled={isSubmitting}>
+        {isSubmitting ? "Adding..." : "Add Staff Member"}
+      </Button>
     </form>
-
   )
 }
