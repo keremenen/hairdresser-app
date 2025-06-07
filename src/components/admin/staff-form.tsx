@@ -9,6 +9,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { staffFormSchema, TStaffForm } from "@/lib/validations"
 import { Label } from "../ui/label"
 import { useStaffContext } from "@/lib/hooks"
+import { StaffMemberEssentials } from "@/lib/types"
 
 type StaffFormProps = {
   actionType: "add" | "edit"
@@ -30,7 +31,7 @@ export function StaffForm({ actionType, onFormSubbmition }: StaffFormProps) {
       name: actionType === "edit" ? 'edit mode' : "",
       role: actionType === "edit" ? 'edit mode' : "",
       email: actionType === "edit" ? 'edit mode' : "dawdwa@o2.pl",
-      imageUrl: actionType === "edit" ? 'edit mode' : "dawdwadwad",
+      imageUrl: actionType === "edit" ? 'edit mode' : "",
       isActive: actionType === "edit" ? true : true,
     },
   })
@@ -40,7 +41,7 @@ export function StaffForm({ actionType, onFormSubbmition }: StaffFormProps) {
     onFormSubbmition()
 
     if (actionType === "add") {
-      handleAddStaff(data)
+      handleAddStaff(data as StaffMemberEssentials)
     }
   }
 

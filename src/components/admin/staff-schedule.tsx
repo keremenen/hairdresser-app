@@ -9,18 +9,19 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { formatDate } from "@/lib/utils"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { AppointmentsData } from "@/data/appointments-data"
+import { StaffMember } from "../../../generated/prisma"
 
-interface StaffScheduleProps {
-  staffId: string
+type StaffScheduleProps = {
+  selectedStaff: StaffMember
 }
 
-export function StaffSchedule({ staffId }: StaffScheduleProps) {
+export function StaffSchedule({ selectedStaff }: StaffScheduleProps) {
   const today = new Date()
   const [selectedDate, setSelectedDate] = useState<string>(today.toISOString().split("T")[0])
   const [viewMode, setViewMode] = useState<"day" | "week">("day")
 
   // Get staff appointments
-  const staffAppointments = AppointmentsData.filter((appointment) => appointment.stylist.id === staffId)
+
 
   // Generate dates for the week view
   const generateWeekDates = () => {
