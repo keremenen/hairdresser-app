@@ -26,13 +26,15 @@ export function formatTime(time: string): string {
  */
 export function mapDatabaseStaffToComponentFormat(
   staffMember: StaffMember
-): StaffMemberEssentials {
+): StaffMember {
   return {
     id: staffMember.id,
     name: staffMember.name,
     email: staffMember.email,
     imageUrl: staffMember.imageUrl,
-    description: staffMember.description,
+    role: staffMember.role,
     isActive: staffMember.isActive,
+    createdAt: staffMember.createdAt,
+    updatedAt: staffMember.updatedAt,
   }
 }

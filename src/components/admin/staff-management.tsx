@@ -1,28 +1,19 @@
 "use client"
-import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Clock, Plus, X } from "lucide-react"
 import { StaffSchedule } from "./staff-schedule"
-import { StaffMemberEssentials } from "@/lib/types"
 import { StaffButton } from "./staff-button"
+import { useStaffContext } from "@/lib/hooks"
+import { StaffMember } from "../../../generated/prisma"
 
 
-type StaffManagementProps = {
-  initialStaffData: StaffMemberEssentials[];
-}
+export function StaffManagement() {
+  const { selectedStaffId, selectedStaff, handleSetSelectedStaffId, staff } = useStaffContext()
 
-export function StaffManagement({ initialStaffData }: StaffManagementProps) {
-  const [selectedStaffId, setSelectedStaffId] = useState<string | null>(null)
-  const [staff, setStaff] = useState<StaffMemberEssentials[]>(initialStaffData)
 
-  const handleViewSchedule = (staffId: string) => {
-    setSelectedStaffId(staffId === selectedStaffId ? null : staffId)
-  }
-
-  const selectedStaff = staff.find((member) => member.id === selectedStaffId)
 
   return (
     <div className="space-y-6">
@@ -47,7 +38,7 @@ export function StaffManagement({ initialStaffData }: StaffManagementProps) {
                 <h2 className="text-xl font-semibold">{selectedStaff.name}'s Schedule</h2>
               </div>
             </div>
-            <Button variant="ghost" size="icon" onClick={() => setSelectedStaffId(null)}>
+            <Button variant="ghost" size="icon" >
               <X className="h-4 w-4" />
               <span className="sr-only">Close</span>
             </Button>
@@ -56,27 +47,28 @@ export function StaffManagement({ initialStaffData }: StaffManagementProps) {
             <StaffSchedule staffId={selectedStaffId} />
           </CardContent>
         </Card>
-      )}
+      )
+      }
 
       <StaffList
         staff={staff}
         selectedStaffId={selectedStaffId}
-        handleViewSchedule={handleViewSchedule}
+
       />
-    </div>
+    </div >
   )
 
 
   type StaffListProps = {
-    staff: StaffMemberEssentials[];
+    staff: StaffMember[]
     selectedStaffId: string | null;
-    handleViewSchedule: (staffId: string) => void;
   }
 
   function StaffList({
     staff,
     selectedStaffId,
-    handleViewSchedule,
+
+
   }: StaffListProps) {
     return (
       <section className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -117,7 +109,7 @@ export function StaffManagement({ initialStaffData }: StaffManagementProps) {
                 </Avatar>
                 <div>
                   <p className="font-medium">{member.name}</p>
-                  <p className="text-sm text-muted-foreground">{member.description}</p>
+                  <p className="text-sm text-muted-foreground">{member.role}</p>
                 </div>
               </div>
               <div className="mt-4 space-y-2">
@@ -132,7 +124,7 @@ export function StaffManagement({ initialStaffData }: StaffManagementProps) {
                 variant={selectedStaffId === member.id ? "default" : "outline"}
                 size="sm"
                 className="w-full"
-                onClick={() => handleViewSchedule(member.id)}
+                onClick={() => handleSetSelectedStaffId(member.id)}
               >
                 {selectedStaffId === member.id ? "Hide Schedule" : "View Schedule"}
               </Button>
